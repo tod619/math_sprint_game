@@ -65,7 +65,7 @@ function createEquations() {
     equationObject = { value: equation, evaluated: 'false' };
     equationsArray.push(equationObject);
   }
-
+  shuffle(equationsArray)
   console.log(equationsArray)
 }
 
