@@ -83,10 +83,28 @@ function createEquations() {
 //   itemContainer.appendChild(bottomSpacer);
 // }
 
+// Run countdown counter
+function countdownStart() {
+  countdown.textContent = '3'
+
+  setTimeout(() => {
+    countdown.textContent = '2'
+  }, 1000)
+
+  setTimeout(() => {
+    countdown.textContent = '1'
+  }, 2000)
+
+  setTimeout(() => {
+    countdown.textContent = 'GO!'
+  }, 3000)
+}
+
 // Navigate from splash page to countdown page
 function showCountdown() {
   countdownPage.hidden = false
   splashPage.hidden = true 
+  countdownStart()
 }
 
 // Get the value from the selected radio button
@@ -107,7 +125,9 @@ function selectQuestionAmount(e) {
   e.preventDefault()
   questionAmount = getRadioValue()
   console.log(questionAmount)
-  showCountdown()
+  if(questionAmount) {
+    showCountdown()
+  }
 }
 
 // Event Listners
