@@ -46,6 +46,22 @@ function checkTime() {
   if(playersGuessArray.length == questionAmount) {
     console.log('player guess array: ', playersGuessArray)
     clearInterval(timer)
+
+    //Check for wrong guesses + add penality time
+    equationsArray.forEach((equation, idx) => {
+      if(equation.evaluated === playersGuessArray[idx]) {
+        // Correct guess no penality
+      } else {
+        //Incorrect guess 0.5s penality
+        penaltyTime += 0.5
+      }
+
+    })
+
+    finalTime = timePlayed + penaltyTime
+    console.log('time:',timePlayed)
+    console.log('penalty:',penaltyTime)
+    console.log('final time: ',finalTime)
   }
 }
 
