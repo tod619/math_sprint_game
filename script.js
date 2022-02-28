@@ -41,10 +41,28 @@ let finalTimeDisplay = '0.0s'
 // Scroll
 let valueY = 0
 
+// show score page
+function showScorePage() {
+  gamePage.hidden = true
+  scorePage.hidden = false
+}
+
+// Format and display score in DOM
+function scoresToDOM() {
+  finalTimeDisplay = finalTime.toFixed(1)
+  baseTime = timePlayed.toFixed(1)
+  penaltyTime = penaltyTime.toFixed(1)
+
+  baseTimeEl.textContent = `Base Time: ${baseTime}s`
+  penaltyTimeEl.textContent = `Penalty: +${penaltyTime}s`
+  finalTimeEl.textContent = `${finalTimeDisplay}s`
+  showScorePage()
+}
+
 // Stop timer + process results, go to score page
 function checkTime() {
   if(playersGuessArray.length == questionAmount) {
-    console.log('player guess array: ', playersGuessArray)
+    //console.log('player guess array: ', playersGuessArray)
     clearInterval(timer)
 
     //Check for wrong guesses + add penality time
@@ -59,9 +77,10 @@ function checkTime() {
     })
 
     finalTime = timePlayed + penaltyTime
-    console.log('time:',timePlayed)
-    console.log('penalty:',penaltyTime)
-    console.log('final time: ',finalTime)
+    scoresToDOM()
+    // console.log('time:',timePlayed)
+    // console.log('penalty:',penaltyTime)
+    // console.log('final time: ',finalTime)
   }
 }
 
