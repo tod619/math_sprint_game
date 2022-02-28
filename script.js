@@ -36,11 +36,19 @@ let timePlayed = 0
 let baseTime = 0
 let penaltyTime = 0
 let finalTime = 0
-let finalTimeDisplay = '0.0s'
+let finalTimeDisplay = '0.0'
 
 
 // Scroll
 let valueY = 0
+
+// Refresh splash page best scores
+function bestScoresToDOM() {
+  bestScores.forEach((bestScore, idx) => {
+    const bestScoreEl = bestScore
+    bestScoreEl.textContent = `${bestScoreArray[idx].bestScore}s`
+  })
+}
 
 // check local storage and set best score values
 function getSavedBestScores() {
@@ -56,6 +64,8 @@ function getSavedBestScores() {
 
     localStorage.setItem('bestScores', JSON.stringify(bestScoreArray))
   }
+
+  bestScoresToDOM()
 }
 
 // Reset game
