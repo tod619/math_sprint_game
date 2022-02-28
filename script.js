@@ -41,8 +41,26 @@ let finalTimeDisplay = '0.0s'
 // Scroll
 let valueY = 0
 
+// Reset game
+function playAgain() {
+  gamePage.addEventListener('click', startTimer)
+  scorePage.hidden = true	
+  splashPage.hidden = false
+
+  equationsArray = []
+  playersGuessArray = []
+  valueY = 0
+  playAgainBtn.hidden = true
+
+}
+
 // show score page
 function showScorePage() {
+
+  // Show Play Again btn
+  setTimeout(() =>{
+    playAgainBtn.hidden = false
+  }, 1000)
   gamePage.hidden = true
   scorePage.hidden = false
 }
@@ -56,6 +74,9 @@ function scoresToDOM() {
   baseTimeEl.textContent = `Base Time: ${baseTime}s`
   penaltyTimeEl.textContent = `Penalty: +${penaltyTime}s`
   finalTimeEl.textContent = `${finalTimeDisplay}s`
+
+  // Scroll to top, go to score page
+  itemContainer.scrollTo({top: 0, behavior: 'instant' })
   showScorePage()
 }
 
